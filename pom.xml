@@ -11,7 +11,7 @@
     <groupId>com.github.fartherp</groupId>
     <artifactId>javacode</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>javacode</name>
     <url>https://github.com/fartherp/javacode</url>
