@@ -17,39 +17,56 @@ import java.util.StringTokenizer;
  */
 public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
 
-    /** 类名 */
+    /**
+     * 类名
+     */
     private String baseShortName;
 
-    /** 类全名 */
+    /**
+     * 类全名
+     */
     private String baseQualifiedName;
 
-    /** 需要import 标志 true:需要,false不需要 */
+    /**
+     * 需要import 标志 true:需要,false不需要
+     */
     private boolean explicitlyImported;
 
-    /** 包名 */
+    /**
+     * 包名
+     */
     private String packageName;
 
-    /** 是否原始类型 */
+    /**
+     * 是否原始类型
+     */
     private boolean primitive;
 
-    /** 数组标志 */
+    /**
+     * 数组标志
+     */
     private boolean isArray;
 
     private boolean wildcardType;
 
-    /** The bounded wildcard. */
+    /**
+     * The bounded wildcard.
+     */
     private boolean boundedWildcard;
 
-    /** The extends bounded wildcard. */
+    /**
+     * The extends bounded wildcard.
+     */
     private boolean extendsBoundedWildcard;
 
-    /**  */
-    protected JavaTypeInfo fullyQualifiedJavaType;
-
-    /** 原始类型封装 */
+    /**
+     * 原始类型封装
+     */
     private PrimitiveJavaType primitiveJavaType;
 
-    /** 字段信息 */
+    /**
+     * 字段信息
+     */
     private List<JavaTypeInfo> typeArguments;
 
     public JavaTypeInfo(String fullTypeSpecification) {
@@ -77,13 +94,13 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
         if (typeArguments.size() > 0) {
             boolean first = true;
             sb.append('<');
-            for (JavaTypeInfo fqjt : typeArguments) {
+            for (JavaTypeInfo javaTypeInfo : typeArguments) {
                 if (first) {
                     first = false;
                 } else {
                     sb.append(", ");
                 }
-                sb.append(fqjt.getShortName());
+                sb.append(javaTypeInfo.getShortName());
 
             }
             sb.append('>');
@@ -112,19 +129,23 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
         if (typeArguments.size() > 0) {
             boolean first = true;
             sb.append('<');
-            for (JavaTypeInfo fqjt : typeArguments) {
+            for (JavaTypeInfo javaTypeInfo : typeArguments) {
                 if (first) {
                     first = false;
                 } else {
-                    sb.append(", "); 
+                    sb.append(", ");
                 }
-                sb.append(fqjt.getFullyQualifiedName());
+                sb.append(javaTypeInfo.getFullyQualifiedName());
 
             }
             sb.append('>');
         }
 
         return sb.toString();
+    }
+
+    public String getFullyQualifiedNameWithoutTypeParameters() {
+        return baseQualifiedName;
     }
 
     public void addTypeArgument(JavaTypeInfo type) {
@@ -134,20 +155,19 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
     /**
      * 解析
      *
-     * @param fullTypeSpecification
-     *            the full type specification
+     * @param fullTypeSpecification the full type specification
      */
     private void parse(String fullTypeSpecification) {
         String spec = fullTypeSpecification.trim();
 
-        if (spec.startsWith("?")) { 
+        if (spec.startsWith("?")) {
             wildcardType = true;
             spec = spec.substring(1).trim();
-            if (spec.startsWith("extends ")) { 
+            if (spec.startsWith("extends ")) {
                 boundedWildcard = true;
                 extendsBoundedWildcard = true;
                 spec = spec.substring(8);  // "extends ".length()
-            } else if (spec.startsWith("super ")) { 
+            } else if (spec.startsWith("super ")) {
                 boundedWildcard = true;
                 extendsBoundedWildcard = false;
                 spec = spec.substring(6);  // "super ".length()
@@ -163,7 +183,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
                 simpleParse(fullTypeSpecification.substring(0, index));
                 int endIndex = fullTypeSpecification.lastIndexOf('>');
                 if (endIndex == -1) {
-                    throw new RuntimeException(); 
+                    throw new RuntimeException();
                 }
                 genericParse(fullTypeSpecification.substring(index, endIndex + 1));
             }
@@ -179,29 +199,28 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
     /**
      * Generic parse.
      *
-     * @param genericSpecification
-     *            the generic specification
+     * @param genericSpecification the generic specification
      */
     private void genericParse(String genericSpecification) {
         int lastIndex = genericSpecification.lastIndexOf('>');
         if (lastIndex == -1) {
             // shouldn't happen - should be caught already, but just in case...
-            throw new RuntimeException(); 
+            throw new RuntimeException();
         }
         String argumentString = genericSpecification.substring(1, lastIndex);
         // need to find "," outside of a <> bounds
-        StringTokenizer st = new StringTokenizer(argumentString, ",<>", true); 
+        StringTokenizer st = new StringTokenizer(argumentString, ",<>", true);
         int openCount = 0;
         StringBuilder sb = new StringBuilder();
         while (st.hasMoreTokens()) {
             String token = st.nextToken();
-            if ("<".equals(token)) { 
+            if ("<".equals(token)) {
                 sb.append(token);
                 openCount++;
-            } else if (">".equals(token)) { 
+            } else if (">".equals(token)) {
                 sb.append(token);
                 openCount--;
-            } else if (",".equals(token)) { 
+            } else if (",".equals(token)) {
                 if (openCount == 0) {
                     typeArguments.add(new JavaTypeInfo(sb.toString()));
                     sb.setLength(0);
@@ -214,7 +233,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
         }
 
         if (openCount != 0) {
-            throw new RuntimeException(); 
+            throw new RuntimeException();
         }
 
         String finalType = sb.toString();
@@ -226,12 +245,11 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
     /**
      * 获取<之前的包名
      *
-     * @param typeSpecification
-     *            the type specification
+     * @param typeSpecification the type specification
      */
     private void simpleParse(String typeSpecification) {
         baseQualifiedName = typeSpecification.trim();
-        if (baseQualifiedName.contains(".")) { 
+        if (baseQualifiedName.contains(".")) {
             packageName = getPackage(baseQualifiedName);
             baseShortName = baseQualifiedName.substring(packageName.length() + 1);
             int index = baseShortName.lastIndexOf('.');
@@ -240,6 +258,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
             }
 
             if (JavaKeywords.JAVA_LANG.equals(packageName)) {
+                // java.lang包下的java类都不需要import
                 explicitlyImported = false;
             } else {
                 explicitlyImported = true;
@@ -262,30 +281,41 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
     }
 
     /**
-     * 获取导出列表
-     * @return
+     * 获取import列表
      */
     public List<String> getImportList() {
         List<String> answer = new ArrayList<String>();
         if (isExplicitlyImported()) {
             int index = baseShortName.indexOf('.');
             if (index == -1) {
-                answer.add(baseQualifiedName);
+                answer.add(calculateActualImport(baseQualifiedName));
             } else {
                 // an inner class is specified, only import the top
                 // level class
                 StringBuilder sb = new StringBuilder();
                 sb.append(packageName);
                 sb.append('.');
-                sb.append(baseShortName.substring(0, index));
+                sb.append(calculateActualImport(baseShortName.substring(0, index)));
                 answer.add(sb.toString());
             }
         }
 
-        for (JavaTypeInfo fqjt : typeArguments) {
-            answer.addAll(fqjt.getImportList());
+        for (JavaTypeInfo javaTypeInfo : typeArguments) {
+            // 字段import
+            answer.addAll(javaTypeInfo.getImportList());
         }
 
+        return answer;
+    }
+
+    private String calculateActualImport(String name) {
+        String answer = name;
+        if (this.isArray()) {
+            int index = name.indexOf("[");
+            if (index != -1) {
+                answer = name.substring(0, index);
+            }
+        }
         return answer;
     }
 
@@ -303,6 +333,10 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
 
     public boolean isExplicitlyImported() {
         return explicitlyImported;
+    }
+
+    public boolean isArray() {
+        return isArray;
     }
 
     public boolean equals(Object obj) {
