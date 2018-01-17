@@ -31,6 +31,9 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
     /** 注释 */
     private List<String> fileCommentLines;
 
+    /** 所属模块 **/
+    private String module;
+
     public TopLevelClass(JavaTypeInfo type) {
         super(type);
         importedTypes = new TreeSet<JavaTypeInfo>();
@@ -166,5 +169,13 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         if (staticImports != null && staticImports.size() > 0) {
             this.staticImports.addAll(staticImports);
         }
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
     }
 }

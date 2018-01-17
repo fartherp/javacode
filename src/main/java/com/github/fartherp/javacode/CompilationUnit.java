@@ -111,4 +111,10 @@ public interface CompilationUnit {
      * @return 文件注解
      */
     List<String> getFileCommentLines();
+
+    /**
+     * 获取文件所属模块
+     * @return 所属模块
+     */
+    String getModule();
 }
