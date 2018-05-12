@@ -109,6 +109,10 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
         return sb.toString();
     }
 
+    public String getBaseShortName() {
+        return baseShortName;
+    }
+
     public String getFullyQualifiedName() {
         StringBuilder sb = new StringBuilder();
         if (wildcardType) {

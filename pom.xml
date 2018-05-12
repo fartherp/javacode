@@ -18,7 +18,7 @@
     <description>javacode</description>
 
     <properties>
-        <framework-version>1.0.9</framework-version>
+        <framework-version>1.2.3-SNAPSHOT</framework-version>
         <testng.version>6.8.8</testng.version>
         <encoding.charset>UTF-8</encoding.charset>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
