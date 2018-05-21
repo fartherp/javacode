@@ -11,14 +11,14 @@
     <groupId>com.github.fartherp</groupId>
     <artifactId>javacode</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>2.0.1-SNAPSHOT</version>
 
     <name>javacode</name>
     <url>https://github.com/fartherp/javacode</url>
     <description>javacode</description>
 
     <properties>
-        <framework-version>1.2.3-SNAPSHOT</framework-version>
+        <framework-version>2.0.1-SNAPSHOT</framework-version>
         <testng.version>6.8.8</testng.version>
         <encoding.charset>UTF-8</encoding.charset>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
