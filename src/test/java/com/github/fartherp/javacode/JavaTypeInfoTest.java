@@ -251,4 +251,10 @@ public class JavaTypeInfoTest {
         assertTrue(javaTypeInfo.getImportList().contains("java.util.List"));
         assertFalse(javaTypeInfo.getImportList().contains("java.util.List[]"));
     }
+
+    @Test
+    public void testPrimitiveJavaType() {
+        JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Boolean");
+        assertTrue(javaTypeInfo.isPrimitive());
+    }
 }

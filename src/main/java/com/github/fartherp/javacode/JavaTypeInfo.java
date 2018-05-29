@@ -4,6 +4,7 @@
 
 package com.github.fartherp.javacode;
 
+import com.github.fartherp.framework.common.util.PrimitiveJavaType;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
@@ -264,6 +265,10 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
             if (JavaKeywords.JAVA_LANG.equals(packageName)) {
                 // java.lang包下的java类都不需要import
                 explicitlyImported = false;
+                primitiveJavaType = PrimitiveJavaType.getByFullyQualifiedName(baseQualifiedName);
+                if (null != primitiveJavaType) {
+                    primitive = true;
+                }
             } else {
                 explicitlyImported = true;
             }
@@ -272,7 +277,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
             explicitlyImported = false;
             packageName = "";
 
-            primitiveJavaType = PrimitiveJavaType.get(baseQualifiedName);
+            primitiveJavaType = PrimitiveJavaType.getByShortName(baseQualifiedName);
             if (null != primitiveJavaType) {
                 primitive = true;
             }
