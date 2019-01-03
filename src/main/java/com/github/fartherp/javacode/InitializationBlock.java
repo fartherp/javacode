@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
+import com.github.fartherp.framework.common.util.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -76,12 +76,12 @@ public class InitializationBlock {
 
         // 注释
         for (String javaDocLine : getJavaDocLines()) {
-            OutputUtils.javaIndent(sb, indentLevel);
+            OutputUtil.javaIndent(sb, indentLevel);
             sb.append(javaDocLine);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
-        OutputUtils.javaIndent(sb, indentLevel);
+        OutputUtil.javaIndent(sb, indentLevel);
 
         if (isStatic()) {
             sb.append(JavaKeywords.STATIC);
@@ -97,8 +97,8 @@ public class InitializationBlock {
                 indentLevel--;
             }
 
-            OutputUtils.newLine(sb);
-            OutputUtils.javaIndent(sb, indentLevel);
+            OutputUtil.newLine(sb);
+            OutputUtil.javaIndent(sb, indentLevel);
             sb.append(line);
 
             if ((line.endsWith("{") && !line.startsWith(JavaKeywords.SWITCH)) || line.endsWith(":")) {
@@ -121,8 +121,8 @@ public class InitializationBlock {
         }
 
         indentLevel--;
-        OutputUtils.newLine(sb);
-        OutputUtils.javaIndent(sb, indentLevel);
+        OutputUtil.newLine(sb);
+        OutputUtil.javaIndent(sb, indentLevel);
         sb.append('}');
 
         return sb.toString();

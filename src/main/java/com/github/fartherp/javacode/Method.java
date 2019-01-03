@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
+import com.github.fartherp.framework.common.util.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -148,8 +148,8 @@ public class Method extends JavaElement {
                     indentLevel--;
                 }
 
-                OutputUtils.newLine(sb);
-                OutputUtils.javaIndent(sb, indentLevel);
+                OutputUtil.newLine(sb);
+                OutputUtil.javaIndent(sb, indentLevel);
                 sb.append(line);
 
                 if ((line.endsWith("{") && !line.startsWith(JavaKeywords.SWITCH)) || line.endsWith(":")) {
@@ -172,8 +172,8 @@ public class Method extends JavaElement {
             }
 
             indentLevel--;
-            OutputUtils.newLine(sb);
-            OutputUtils.javaIndent(sb, indentLevel);
+            OutputUtil.newLine(sb);
+            OutputUtil.javaIndent(sb, indentLevel);
             sb.append('}');
         }
 

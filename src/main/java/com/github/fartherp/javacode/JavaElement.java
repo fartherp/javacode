@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
+import com.github.fartherp.framework.common.util.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -64,9 +64,9 @@ public abstract class JavaElement {
 
     protected void addFormattedJavadoc(StringBuilder sb, int indentLevel) {
         for (String javaDocLine : javaDocLines) {
-            OutputUtils.javaIndent(sb, indentLevel);
+            OutputUtil.javaIndent(sb, indentLevel);
             sb.append(javaDocLine);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
     }
 
@@ -90,9 +90,9 @@ public abstract class JavaElement {
 
     protected void addFormattedAnnotations(StringBuilder sb, int indentLevel) {
         for (String annotation : annotations) {
-            OutputUtils.javaIndent(sb, indentLevel);
+            OutputUtil.javaIndent(sb, indentLevel);
             sb.append(annotation);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
     }
 
@@ -126,6 +126,6 @@ public abstract class JavaElement {
         // JAVA类注解
         addFormattedAnnotations(sb, indentLevel);
 
-        OutputUtils.javaIndent(sb, indentLevel);
+        OutputUtil.javaIndent(sb, indentLevel);
     }
 }

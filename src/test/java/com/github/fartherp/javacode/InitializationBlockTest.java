@@ -4,7 +4,6 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

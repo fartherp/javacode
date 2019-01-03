@@ -4,8 +4,8 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
-import org.apache.commons.lang.StringUtils;
+import com.github.fartherp.framework.common.util.OutputUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,7 +51,7 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         // 文件注释
         for (String fileCommentLine : fileCommentLines) {
             sb.append(fileCommentLine);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 包名
@@ -59,8 +59,8 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
             sb.append(JavaKeywords.PACKAGE);
             sb.append(getType().getPackageName());
             sb.append(';');
-            OutputUtils.newLine(sb);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 静态包
@@ -68,22 +68,22 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
             sb.append(JavaKeywords.IMPORT_STATIC);
             sb.append(staticImport);
             sb.append(';');
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         if (staticImports.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 导入包并去重
         Set<String> importStrings = calculateImports(importedTypes);
         for (String importString : importStrings) {
             sb.append(importString);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         if (importStrings.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 具体代码生成

@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
+import com.github.fartherp.framework.common.util.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -176,72 +176,72 @@ public class InnerClass extends JavaElement {
         // 字段
         for (int i = 0; i < fields.size(); i++) {
             Field field = fields.get(i);
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             sb.append(field.getFormattedContent(indentLevel));
             if (fields.size() - 1 != i) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (initializationBlocks.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 静态初始化块
         for (int i = 0; i < initializationBlocks.size(); i++) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             InitializationBlock initializationBlock = initializationBlocks.get(i);
             sb.append(initializationBlock.getFormattedContent(indentLevel));
             if (initializationBlocks.size() - 1 != i) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (methods.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 方法块
         for (int i = 0; i < methods.size(); i++) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             Method method = methods.get(i);
             sb.append(method.getFormattedContent(indentLevel, false));
             if (methods.size() - 1 != i) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (innerClasses.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 内部类
         for (int i = 0; i < innerClasses.size(); i++) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             InnerClass innerClass = innerClasses.get(i);
             sb.append(innerClass.getFormattedContent(indentLevel));
             if (innerClasses.size() - 1 != i) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (innerEnums.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         // 内部枚举
         for (int i = 0; i < innerEnums.size(); i++) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             InnerEnum innerEnum = innerEnums.get(i);
             sb.append(innerEnum.getFormattedContent(indentLevel));
             if (innerEnums.size() - 1 != i) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         indentLevel--;
-        OutputUtils.newLine(sb);
-        OutputUtils.javaIndent(sb, indentLevel);
+        OutputUtil.newLine(sb);
+        OutputUtil.javaIndent(sb, indentLevel);
         sb.append('}');
 
         return sb.toString();

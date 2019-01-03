@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtils;
+import com.github.fartherp.framework.common.util.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -140,8 +140,8 @@ public class InnerEnum extends JavaElement {
 
         Iterator<String> strIter = enumConstants.iterator();
         while (strIter.hasNext()) {
-            OutputUtils.newLine(sb);
-            OutputUtils.javaIndent(sb, indentLevel);
+            OutputUtil.newLine(sb);
+            OutputUtil.javaIndent(sb, indentLevel);
             String enumConstant = strIter.next();
             sb.append(enumConstant);
 
@@ -153,64 +153,64 @@ public class InnerEnum extends JavaElement {
         }
 
         if (fields.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         Iterator<Field> fldIter = fields.iterator();
         while (fldIter.hasNext()) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             Field field = fldIter.next();
             sb.append(field.getFormattedContent(indentLevel));
             if (fldIter.hasNext()) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (methods.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         Iterator<Method> mtdIter = methods.iterator();
         while (mtdIter.hasNext()) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             Method method = mtdIter.next();
             sb.append(method.getFormattedContent(indentLevel, false));
             if (mtdIter.hasNext()) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (innerClasses.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         Iterator<InnerClass> icIter = innerClasses.iterator();
         while (icIter.hasNext()) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             InnerClass innerClass = icIter.next();
             sb.append(innerClass.getFormattedContent(indentLevel));
             if (icIter.hasNext()) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         if (innerEnums.size() > 0) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
         }
 
         Iterator<InnerEnum> ieIter = innerEnums.iterator();
         while (ieIter.hasNext()) {
-            OutputUtils.newLine(sb);
+            OutputUtil.newLine(sb);
             InnerEnum innerEnum = ieIter.next();
             sb.append(innerEnum.getFormattedContent(indentLevel));
             if (ieIter.hasNext()) {
-                OutputUtils.newLine(sb);
+                OutputUtil.newLine(sb);
             }
         }
 
         indentLevel--;
-        OutputUtils.newLine(sb);
-        OutputUtils.javaIndent(sb, indentLevel);
+        OutputUtil.newLine(sb);
+        OutputUtil.javaIndent(sb, indentLevel);
         sb.append('}');
 
         return sb.toString();

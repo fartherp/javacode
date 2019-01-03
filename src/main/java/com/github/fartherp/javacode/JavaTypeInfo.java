@@ -5,7 +5,7 @@
 package com.github.fartherp.javacode;
 
 import com.github.fartherp.framework.common.util.PrimitiveJavaType;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

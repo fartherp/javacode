@@ -18,11 +18,13 @@
     <description>javacode</description>
 
     <properties>
-        <framework-version>2.0.2</framework-version>
-        <testng.version>6.8.8</testng.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <encoding.charset>UTF-8</encoding.charset>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <profiles.dir>src/main/profiles</profiles.dir>
+        <framework-version>3.0.0</framework-version>
+        <testng.version>6.14.3</testng.version>
     </properties>
 
     <scm>
@@ -40,6 +42,14 @@
         </license>
     </licenses>
 
+    <issueManagement>
+        <system>GitHub Issue Management</system>
+        <url>https://github.com/fartherp/javacode/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.com/fartherp/javacode</url>
+    </ciManagement>
     <distributionManagement>
         <repository>
             <id>oss</id>
@@ -57,7 +67,7 @@
         <developer>
             <id>CK</id>
             <name>CK</name>
-            <email>yuqiang.cui@gmail.com</email>
+            <email>214722930@qq.com</email>
         </developer>
     </developers>
 
@@ -203,6 +213,25 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE</include>
+                    <include>NOTICE</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
