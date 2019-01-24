@@ -1,4 +1,21 @@
 # 生成java文件
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.fartherp/javacode/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.fartherp/javacode/)
+
+## 如何使用？
+1. 在项目中加入```javacode```依赖
+
+    ```Maven```
+    ``` xml
+    <dependency>
+        <groupId>com.github.fartherp</groupId>
+        <artifactId>javacode</artifactId>
+        <version>2.0.3</version>
+    </dependency>
+    ```
+    ```Gradle```
+    ```
+    compile 'com.github.fartherp:javacode:2.0.3'
+    ```
 
 ## java类型类
 ```
