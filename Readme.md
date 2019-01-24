@@ -1,5 +1,9 @@
 # 生成java文件
+[![Build Status](https://travis-ci.org/fartherp/javacode.svg?branch=master)](https://travis-ci.org/fartherp/javacode)
+[![Coverage Status](https://coveralls.io/repos/github/fartherp/javacode/badge.svg?branch=master)](https://coveralls.io/github/fartherp/javacode?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.fartherp/javacode/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.fartherp/javacode/)
+[![GitHub release](https://img.shields.io/github/release/fartherp/javacode.svg)](https://github.com/fartherp/javacode/releases)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## 如何使用？
 1. 在项目中加入```javacode```依赖
