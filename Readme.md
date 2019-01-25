@@ -4,6 +4,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.fartherp/javacode/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.fartherp/javacode/)
 [![GitHub release](https://img.shields.io/github/release/fartherp/javacode.svg)](https://github.com/fartherp/javacode/releases)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Project Stats](https://www.openhub.net/p/fartherp-javacode/widgets/project_thin_badge.gif)](https://www.openhub.net/p/fartherp-javacode)
 
 ## 如何使用？
 1. 在项目中加入```javacode```依赖
