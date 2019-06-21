@@ -19,7 +19,7 @@ public class Parameter {
     /** JAVA类型信息 */
     private JavaTypeInfo type;
     /** 是否数组 */
-    private boolean isVarargs;
+    private boolean ifVarargs;
     /** 注解列表 */
     private List<String> annotations;
 
@@ -39,7 +39,7 @@ public class Parameter {
 
         sb.append(type.getShortName());
         sb.append(' ');
-        if (isVarargs()) {
+        if (isIfVarargs()) {
             sb.append(JavaKeywords.ARRAYS);
         }
         sb.append(name);
@@ -69,12 +69,12 @@ public class Parameter {
         }
     }
 
-    public boolean isVarargs() {
-        return isVarargs;
+    public boolean isIfVarargs() {
+        return ifVarargs;
     }
 
-    public void setVarargs(boolean varargs) {
-        isVarargs = varargs;
+    public void setIfVarargs(boolean ifVarargs) {
+        this.ifVarargs = ifVarargs;
     }
 
     public String toString() {

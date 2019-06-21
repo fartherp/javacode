@@ -107,6 +107,12 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         }
     }
 
+	public void addImportedTypes(Set<JavaTypeInfo> importedTypes) {
+		if (importedTypes != null && importedTypes.size() > 0) {
+			this.importedTypes.addAll(importedTypes);
+		}
+	}
+
     /**
      * 导入Set
      *
@@ -149,12 +155,6 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
 
     public List<String> getFileCommentLines() {
         return fileCommentLines;
-    }
-
-    public void addImportedTypes(Set<JavaTypeInfo> importedTypes) {
-        if (importedTypes != null && importedTypes.size() > 0) {
-            this.importedTypes.addAll(importedTypes);
-        }
     }
 
     public Set<String> getStaticImports() {

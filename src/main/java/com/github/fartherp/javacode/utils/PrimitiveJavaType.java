@@ -4,7 +4,6 @@
 
 package com.github.fartherp.javacode.utils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,25 +43,6 @@ public enum PrimitiveJavaType {
             map.put(javaType.clazz.getName(), javaType);
         }
     }
-
-    @SuppressWarnings("unchecked")
-    public static Object covertValue(Class clazz, Object value) {
-        if (value == null) {
-            return null;
-        }
-        PrimitiveJavaType javaType = map.get(clazz.getSimpleName());
-        try {
-            if (javaType != null) {
-                return javaType.clazz.getMethod(javaType.method, String.class).invoke(null, value.toString());
-            } else {
-                return value;
-            }
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException("no found method: " + javaType.method, e);
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-	}
 
     public static PrimitiveJavaType getByFullyQualifiedName(String fullyQualifiedName) {
         return map.get(fullyQualifiedName);

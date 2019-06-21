@@ -41,10 +41,10 @@ public class InnerClass extends JavaElement {
     private List<Method> methods;
 
     /** 是否抽象类 */
-    private boolean isAbstract;
+    private boolean ifAbstract;
 
     /** 是否接口 */
-    private boolean isInterface;
+    private boolean ifInterface;
 
     /** 初始化模块 */
     private List<InitializationBlock> initializationBlocks;
@@ -87,7 +87,7 @@ public class InnerClass extends JavaElement {
     }
 
     public void setSuperClass(String superClassType) {
-        this.superClass = new JavaTypeInfo(superClassType);
+        this.setSuperClass(new JavaTypeInfo(superClassType));
     }
 
     public List<InnerClass> getInnerClasses() {
@@ -126,7 +126,7 @@ public class InnerClass extends JavaElement {
         sb.append(getJavaScope());
 
         // 抽象类
-        if (isAbstract()) {
+        if (isIfAbstract()) {
             sb.append(JavaKeywords.ABSTRACT);
         }
 
@@ -141,7 +141,7 @@ public class InnerClass extends JavaElement {
         }
 
         // 接口或者类
-        sb.append(isInterface() ? JavaKeywords.INTERFACE: JavaKeywords.CLASS);
+        sb.append(isIfInterface() ? JavaKeywords.INTERFACE: JavaKeywords.CLASS);
 
         // 类名
         sb.append(getType().getShortName());
@@ -153,7 +153,7 @@ public class InnerClass extends JavaElement {
         }
 
         // 类实现的接口
-        if (!isInterface()) {
+        if (!isIfInterface()) {
             if (getSuperInterfaceTypes().size() > 0) {
                 sb.append(JavaKeywords.IMPLEMENTS);
 
@@ -257,7 +257,7 @@ public class InnerClass extends JavaElement {
 
     public void addSuperInterface(String superInterface) {
         JavaTypeInfo tmpSuperInterface = new JavaTypeInfo(superInterface);
-        superInterfaceTypes.add(tmpSuperInterface);
+        this.addSuperInterface(tmpSuperInterface);
     }
 
     public void addSuperInterfaces(Set<JavaTypeInfo> superInterfaces) {
@@ -284,19 +284,33 @@ public class InnerClass extends JavaElement {
         return type;
     }
 
-    public boolean isAbstract() {
-        return isAbstract;
+    public boolean isIfAbstract() {
+        return ifAbstract;
     }
 
-    public void setAbstract(boolean isAbtract) {
-        this.isAbstract = isAbtract;
+    public void setIfAbstract(boolean isAbtract) {
+        this.ifAbstract = isAbtract;
     }
 
-    public boolean isInterface() {
-        return isInterface;
+    public boolean isIfInterface() {
+        return ifInterface;
     }
 
-    public void setInterface(boolean isInterface) {
-        this.isInterface = isInterface;
+    public void setIfInterface(boolean isInterface) {
+        this.ifInterface = isInterface;
     }
+
+	public List<InitializationBlock> getInitializationBlocks() {
+		return initializationBlocks;
+	}
+
+	public void addInitializationBlock(InitializationBlock initializationBlock) {
+		this.initializationBlocks.add(initializationBlock);
+	}
+
+	public void addInitializationBlocks(Collection<InitializationBlock> collection) {
+		if (collection != null && collection.size() > 0) {
+			this.initializationBlocks.addAll(collection);
+		}
+	}
 }

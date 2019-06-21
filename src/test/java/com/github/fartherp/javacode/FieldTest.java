@@ -6,6 +6,9 @@ package com.github.fartherp.javacode;
 
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 /**
@@ -16,7 +19,7 @@ import static org.testng.Assert.*;
  */
 public class FieldTest {
     @Test
-    public void testGetFormattedContent() throws Exception {
+    public void testDefaultIntegerGetFormattedContent() throws Exception {
         JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
         Field field = new Field("age", javaTypeInfo);
         String fieldStr = field.getFormattedContent(1);
@@ -24,12 +27,69 @@ public class FieldTest {
     }
 
     @Test
-    public void testGetFormattedContent1() throws Exception {
+    public void testOverrideIntegerGetFormattedContent() throws Exception {
         JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
         Field field = new Field("age", javaTypeInfo);
         field.setIfTransient(true).setIfVolatile(true).setInitializationString("new Integer(21)");
+		field.setIfStatic(true);
+		field.setIfFinal(true);
         String fieldStr = field.getFormattedContent(1);
         assertNotNull(fieldStr);
     }
 
+	@Test
+	public void testDefaultStringGetFormattedContent() throws Exception {
+		JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.String");
+		Field field = new Field("name", javaTypeInfo);
+		field.setInitializationString("test_value");
+		String fieldStr = field.getFormattedContent(1);
+		assertNotNull(fieldStr);
+	}
+
+	@Test
+	public void testConstructorIntegerGetFormattedContent() throws Exception {
+		JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
+		Field field = new Field("age", javaTypeInfo);
+		Field newField = new Field(field);
+		String fieldStr = field.getFormattedContent(1);
+		String newFieldStr = newField.getFormattedContent(1);
+		assertEquals(fieldStr, newFieldStr);
+	}
+
+	@Test
+	public void testJavaDocLineGetFormattedContent() throws Exception {
+		JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
+		Field field = new Field("age", javaTypeInfo);
+		field.addJavaDocLine("/*");
+		field.addJavaDocLine(" * this is age");
+		field.addJavaDocLine(" */");
+		String fieldStr = field.getFormattedContent(1);
+		assertNotNull(fieldStr);
+	}
+
+	@Test
+	public void testJavaDocLinesGetFormattedContent() throws Exception {
+		JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
+		Field field = new Field("age", javaTypeInfo);
+		List<String> javaDocLines = new ArrayList<>();
+		javaDocLines.add("/*");
+		javaDocLines.add(" * this is age");
+		javaDocLines.add(" */");
+		field.addJavaDocLines(javaDocLines);
+		field.addSuppressTypeWarningsAnnotation();
+		String fieldStr = field.getFormattedContent(1);
+		assertNotNull(fieldStr);
+	}
+
+	@Test
+	public void testAnnotationsGetFormattedContent() throws Exception {
+		JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
+		Field field = new Field("age", javaTypeInfo);
+		List<String> annotations = new ArrayList<>();
+		annotations.add("@Value");
+		annotations.add("@Auto");
+		field.addAnnotations(annotations);
+		String fieldStr = field.getFormattedContent(1);
+		assertNotNull(fieldStr);
+	}
 }

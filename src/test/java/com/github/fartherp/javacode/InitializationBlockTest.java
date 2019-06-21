@@ -6,6 +6,9 @@ package com.github.fartherp.javacode;
 
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 /**
@@ -23,7 +26,7 @@ public class InitializationBlockTest {
     }
 
     @Test
-    public void testGetFormattedContent1() throws Exception {
+    public void testAddLineGetFormattedContent() throws Exception {
         InitializationBlock initializationBlock = new InitializationBlock();
         initializationBlock.addBodyLine("int age = 27;");
         initializationBlock.addJavaDocLine("/**");
@@ -32,4 +35,28 @@ public class InitializationBlockTest {
         String str = initializationBlock.getFormattedContent(0);
         assertNotNull(str);
     }
+
+	@Test
+	public void testAddJavaDocLinesGetFormattedContent() throws Exception {
+		InitializationBlock initializationBlock = new InitializationBlock();
+		initializationBlock.addBodyLine("int age = 27;");
+		List<String> javaDocLines = new ArrayList<>();
+		javaDocLines.add("/**");
+		javaDocLines.add(" * this age");
+		javaDocLines.add(" */");
+		initializationBlock.addJavaDocLines(javaDocLines);
+		String str = initializationBlock.getFormattedContent(0);
+		assertNotNull(str);
+	}
+
+	@Test
+	public void testAddBodyLinesGetFormattedContent() throws Exception {
+		InitializationBlock initializationBlock = new InitializationBlock();
+		List<String> bodyLines = new ArrayList<>();
+		bodyLines.add("int age = 27;");
+		bodyLines.add("String name = \"zhangsan\";");
+		initializationBlock.addBodyLines(bodyLines);
+		String str = initializationBlock.getFormattedContent(0);
+		assertNotNull(str);
+	}
 }
