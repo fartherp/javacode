@@ -23,7 +23,6 @@
         <encoding.charset>UTF-8</encoding.charset>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <profiles.dir>src/main/profiles</profiles.dir>
-        <framework-version>3.0.1</framework-version>
         <testng.version>6.14.3</testng.version>
         <coveralls.version>4.3.0</coveralls.version>
         <jacoco.version>0.8.2</jacoco.version>
@@ -268,11 +267,6 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.fartherp</groupId>
-            <artifactId>framework-common</artifactId>
-            <version>${framework-version}</version>
         </dependency>
     </dependencies>
 </project>
