@@ -20,9 +20,9 @@ public class Field extends JavaElement {
     /** 初始值 */
     private String initializationString;
     /** transient */
-    private boolean isTransient;
+    private boolean ifTransient;
     /** volatile */
-    private boolean isVolatile;
+    private boolean ifVolatile;
 
     public Field(String name, JavaTypeInfo type) {
         super();
@@ -32,9 +32,10 @@ public class Field extends JavaElement {
 
     public Field(Field field) {
         super(field);
-        this.type = field.type;
-        this.name = field.name;
-        this.initializationString = field.initializationString;
+        this.type = field.getType();
+        this.name = field.getName();
+        this.initializationString = field.getInitializationString();
+        this.ifTransient = field.isIfTransient();
     }
 
     public String getName() {
@@ -60,19 +61,19 @@ public class Field extends JavaElement {
 
         sb.append(getJavaScope());
 
-        if (isStatic()) {
+        if (isIfStatic()) {
             sb.append(JavaKeywords.STATIC);
         }
 
-        if (isFinal()) {
+        if (isIfFinal()) {
             sb.append(JavaKeywords.FINAL);
         }
 
-        if (isTransient()) {
+        if (isIfTransient()) {
             sb.append(JavaKeywords.TRANSIENT);
         }
 
-        if (isVolatile()) {
+        if (isIfVolatile()) {
             sb.append(JavaKeywords.VOLATILE);
         }
 
@@ -81,7 +82,7 @@ public class Field extends JavaElement {
         sb.append(getName());
 
         // 设置初始值
-        if (isFinal() || getInitializationString() != null) {
+        if (isIfFinal() || getInitializationString() != null) {
             sb.append(" = ");
             if (String.class.getName().equals(getType().getFullyQualifiedName())) {
                 sb.append('"');
@@ -97,21 +98,21 @@ public class Field extends JavaElement {
         return sb.toString();
     }
 
-    public boolean isTransient() {
-        return isTransient;
+    public boolean isIfTransient() {
+        return ifTransient;
     }
 
-    public Field setTransient(boolean isTransient) {
-        this.isTransient = isTransient;
+    public Field setIfTransient(boolean isTransient) {
+        this.ifTransient = isTransient;
         return this;
     }
 
-    public boolean isVolatile() {
-        return isVolatile;
+    public boolean isIfVolatile() {
+        return ifVolatile;
     }
 
-    public Field setVolatile(boolean isVolatile) {
-        this.isVolatile = isVolatile;
+    public Field setIfVolatile(boolean isVolatile) {
+        this.ifVolatile = isVolatile;
         return this;
     }
 }
