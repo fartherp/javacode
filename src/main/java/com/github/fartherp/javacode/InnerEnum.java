@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtil;
+import com.github.fartherp.javacode.utils.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,12 +44,12 @@ public class InnerEnum extends JavaElement {
     public InnerEnum(JavaTypeInfo type) {
         super();
         this.type = type;
-        fields = new ArrayList<Field>();
-        innerClasses = new ArrayList<InnerClass>();
-        innerEnums = new ArrayList<InnerEnum>();
-        superInterfaceTypes = new HashSet<JavaTypeInfo>();
-        methods = new ArrayList<Method>();
-        enumConstants = new ArrayList<String>();
+		this.fields = new ArrayList<>();
+		this.innerClasses = new ArrayList<>();
+		this.innerEnums = new ArrayList<>();
+		this.superInterfaceTypes = new HashSet<>();
+		this.methods = new ArrayList<>();
+		this.enumConstants = new ArrayList<>();
     }
 
     public List<Field> getFields() {

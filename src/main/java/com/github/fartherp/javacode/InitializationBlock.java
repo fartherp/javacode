@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtil;
+import com.github.fartherp.javacode.utils.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +23,7 @@ import java.util.ListIterator;
  */
 public class InitializationBlock {
     /** 是否静态 */
-    private boolean isStatic;
+    private boolean ifStatic;
     /** 具体内容list */
     private List<String> bodyLines;
     /** 注解list */
@@ -34,13 +34,13 @@ public class InitializationBlock {
     }
 
     public InitializationBlock(boolean isStatic) {
-        this.isStatic = isStatic;
-        bodyLines = new ArrayList<String>();
-        javaDocLines = new ArrayList<String>();
+        this.ifStatic = isStatic;
+        this.bodyLines = new ArrayList<>();
+		this.javaDocLines = new ArrayList<>();
     }
 
-    public boolean isStatic() {
-        return isStatic;
+    public boolean isIfStatic() {
+        return ifStatic;
     }
 
     public List<String> getBodyLines() {
@@ -83,7 +83,7 @@ public class InitializationBlock {
 
         OutputUtil.javaIndent(sb, indentLevel);
 
-        if (isStatic()) {
+        if (isIfStatic()) {
             sb.append(JavaKeywords.STATIC);
         }
 

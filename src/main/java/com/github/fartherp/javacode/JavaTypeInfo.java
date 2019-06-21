@@ -4,8 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.PrimitiveJavaType;
-import org.apache.commons.lang3.StringUtils;
+import com.github.fartherp.javacode.utils.PrimitiveJavaType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
     private List<JavaTypeInfo> typeArguments;
 
     public JavaTypeInfo(String fullTypeSpecification) {
-        typeArguments = new ArrayList<JavaTypeInfo>();
+        typeArguments = new ArrayList<>();
         parse(fullTypeSpecification);
     }
 
@@ -242,7 +241,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
         }
 
         String finalType = sb.toString();
-        if (StringUtils.isNotBlank(finalType)) {
+        if (!"".equals(finalType.trim())) {
             typeArguments.add(new JavaTypeInfo(finalType));
         }
     }
@@ -293,7 +292,7 @@ public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
      * 获取import列表
      */
     public List<String> getImportList() {
-        List<String> answer = new ArrayList<String>();
+        List<String> answer = new ArrayList<>();
         if (isExplicitlyImported()) {
             int index = baseShortName.indexOf('.');
             if (index == -1) {

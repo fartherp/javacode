@@ -27,7 +27,7 @@ public class FieldTest {
     public void testGetFormattedContent1() throws Exception {
         JavaTypeInfo javaTypeInfo = new JavaTypeInfo("java.lang.Integer");
         Field field = new Field("age", javaTypeInfo);
-        field.setTransient(true).setVolatile(true).setInitializationString("new Integer(21)");
+        field.setIfTransient(true).setIfVolatile(true).setInitializationString("new Integer(21)");
         String fieldStr = field.getFormattedContent(1);
         assertNotNull(fieldStr);
     }

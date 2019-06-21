@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtil;
+import com.github.fartherp.javacode.utils.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,32 +38,32 @@ public class Method extends JavaElement {
     private List<JavaTypeInfo> exceptions;
 
     /** 是否同步 */
-    private boolean isSynchronized;
+    private boolean ifSynchronized;
 
     /** 是否本地方法 */
-    private boolean isNative;
+    private boolean ifNative;
 
     public Method(String name) {
         super();
-        bodyLines = new ArrayList<String>();
-        parameters = new ArrayList<Parameter>();
-        exceptions = new ArrayList<JavaTypeInfo>();
+		this.bodyLines = new ArrayList<>();
+		this.parameters = new ArrayList<>();
+		this.exceptions = new ArrayList<>();
         this.name = name;
     }
 
     public Method(Method original) {
         super(original);
-        bodyLines = new ArrayList<String>();
-        parameters = new ArrayList<Parameter>();
-        exceptions = new ArrayList<JavaTypeInfo>();
-        this.bodyLines.addAll(original.bodyLines);
-        this.constructor = original.constructor;
-        this.exceptions.addAll(original.exceptions);
-        this.name = original.name;
-        this.parameters.addAll(original.parameters);
-        this.returnType = original.returnType;
-        this.isNative = original.isNative;
-        this.isSynchronized = original.isSynchronized;
+		this.bodyLines = new ArrayList<>();
+		this.parameters = new ArrayList<>();
+		this.exceptions = new ArrayList<>();
+        this.addBodyLines(original.getBodyLines());
+        this.setConstructor(original.isConstructor());
+        this.addExceptions(original.getExceptions());
+        this.name = original.getName();
+        this.addParameters(original.getParameters());
+        this.setReturnType(original.getReturnType());
+        this.setIfNative(original.isIfNative());
+        this.setIfSynchronized(original.isIfSynchronized());
     }
 
     public String getFormattedContent(int indentLevel, boolean interfaceMethod) {
@@ -75,19 +75,19 @@ public class Method extends JavaElement {
             // 方法
             sb.append(getJavaScope());
 
-            if (isStatic()) {
+            if (isIfStatic()) {
                 sb.append(JavaKeywords.STATIC);
             }
 
-            if (isFinal()) {
+            if (isIfFinal()) {
                 sb.append(JavaKeywords.FINAL);
             }
 
-            if (isSynchronized()) {
+            if (isIfSynchronized()) {
                 sb.append(JavaKeywords.SYNCHRONIZED);
             }
 
-            if (isNative()) {
+            if (isIfNative()) {
                 sb.append(JavaKeywords.NATIVE);
             } else if (bodyLines.size() == 0) {
                 sb.append(JavaKeywords.ABSTRACT);
@@ -133,7 +133,7 @@ public class Method extends JavaElement {
             }
         }
 
-        if (bodyLines.size() == 0 || isNative()) {
+        if (bodyLines.size() == 0 || isIfNative()) {
             // 抽象方法或本地方法
             sb.append(';');
         } else {
@@ -242,19 +242,19 @@ public class Method extends JavaElement {
         }
     }
 
-    public boolean isSynchronized() {
-        return isSynchronized;
+    public boolean isIfSynchronized() {
+        return ifSynchronized;
     }
 
-    public void setSynchronized(boolean isSynchronized) {
-        this.isSynchronized = isSynchronized;
+    public void setIfSynchronized(boolean isSynchronized) {
+        this.ifSynchronized = isSynchronized;
     }
 
-    public boolean isNative() {
-        return isNative;
+    public boolean isIfNative() {
+        return ifNative;
     }
 
-    public void setNative(boolean isNative) {
-        this.isNative = isNative;
+    public void setIfNative(boolean isNative) {
+        this.ifNative = isNative;
     }
 }

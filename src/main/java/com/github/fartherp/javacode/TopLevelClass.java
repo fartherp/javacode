@@ -4,8 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtil;
-import org.apache.commons.lang3.StringUtils;
+import com.github.fartherp.javacode.utils.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,9 +35,9 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
 
     public TopLevelClass(JavaTypeInfo type) {
         super(type);
-        importedTypes = new TreeSet<JavaTypeInfo>();
-        fileCommentLines = new ArrayList<String>();
-        staticImports = new TreeSet<String>();
+        this.importedTypes = new TreeSet<>();
+		this.fileCommentLines = new ArrayList<>();
+		this.staticImports = new TreeSet<>();
     }
 
     public TopLevelClass(String typeName) {
@@ -55,9 +54,10 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         }
 
         // 包名
-        if (StringUtils.isNotBlank(getType().getPackageName())) {
+		String packageName = getType().getPackageName();
+        if (packageName != null && !"".equals(packageName.trim())) {
             sb.append(JavaKeywords.PACKAGE);
-            sb.append(getType().getPackageName());
+            sb.append(packageName);
             sb.append(';');
             OutputUtil.newLine(sb);
             OutputUtil.newLine(sb);
@@ -115,7 +115,7 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
      */
     private Set<String> calculateImports(Set<JavaTypeInfo> importedTypes) {
         StringBuilder sb = new StringBuilder();
-        Set<String> importStrings = new TreeSet<String>();
+        Set<String> importStrings = new TreeSet<>();
         for (JavaTypeInfo info : importedTypes) {
             for (String importString : info.getImportList()) {
                 sb.setLength(0);

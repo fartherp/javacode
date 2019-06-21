@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtil;
+import com.github.fartherp.javacode.utils.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,12 +52,12 @@ public class InnerClass extends JavaElement {
     public InnerClass(JavaTypeInfo type) {
         super();
         this.type = type;
-        fields = new ArrayList<Field>();
-        innerClasses = new ArrayList<InnerClass>();
-        innerEnums = new ArrayList<InnerEnum>();
-        superInterfaceTypes = new HashSet<JavaTypeInfo>();
-        methods = new ArrayList<Method>();
-        initializationBlocks = new ArrayList<InitializationBlock>();
+		this.fields = new ArrayList<>();
+		this.innerClasses = new ArrayList<>();
+		this.innerEnums = new ArrayList<>();
+		this.superInterfaceTypes = new HashSet<>();
+		this.methods = new ArrayList<>();
+		this.initializationBlocks = new ArrayList<>();
     }
 
     public InnerClass(String typeName) {
@@ -131,12 +131,12 @@ public class InnerClass extends JavaElement {
         }
 
         // 静态类
-        if (isStatic()) {
+        if (isIfStatic()) {
             sb.append(JavaKeywords.STATIC);
         }
 
         // final类
-        if (isFinal()) {
+        if (isIfFinal()) {
             sb.append(JavaKeywords.FINAL);
         }
 

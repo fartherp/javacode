@@ -26,7 +26,7 @@ public class Parameter {
     public Parameter(JavaTypeInfo type, String name) {
         this.name = name;
         this.type = type;
-        annotations = new ArrayList<String>();
+        this.annotations = new ArrayList<>();
     }
 
     public String getFormattedContent() {

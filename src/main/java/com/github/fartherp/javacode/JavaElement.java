@@ -4,7 +4,7 @@
 
 package com.github.fartherp.javacode;
 
-import com.github.fartherp.framework.common.util.OutputUtil;
+import com.github.fartherp.javacode.utils.OutputUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,27 +25,27 @@ public abstract class JavaElement {
     private String javaScope = JavaKeywords.DEFAULT;
 
     /** static */
-    private boolean isStatic;
+    private boolean ifStatic;
 
     /** final */
-    private boolean isFinal;
+    private boolean ifFinal;
 
     /** JAVA注解 */
     private List<String> annotations;
 
     public JavaElement() {
         super();
-        javaDocLines = new ArrayList<String>();
-        annotations = new ArrayList<String>();
+        this.javaDocLines = new ArrayList<>();
+		this.annotations = new ArrayList<>();
     }
 
     public JavaElement(JavaElement original) {
         this();
-        this.annotations.addAll(original.annotations);
-        this.isFinal = original.isFinal;
-        this.isStatic = original.isFinal;
-        this.javaDocLines.addAll(original.javaDocLines);
-        this.javaScope = original.javaScope;
+        this.addAnnotations(original.getAnnotations());
+        this.setIfFinal(original.isIfFinal());
+        this.setIfStatic(original.isIfStatic());
+        this.addJavaDocLines(original.getJavaDocLines());
+        this.setJavaScope(original.getJavaScope());
     }
 
     public List<String> getJavaDocLines() {
@@ -104,20 +104,20 @@ public abstract class JavaElement {
         this.javaScope = javaScope;
     }
 
-    public boolean isFinal() {
-        return isFinal;
+    public boolean isIfFinal() {
+        return ifFinal;
     }
 
-    public void setFinal(boolean isFinal) {
-        this.isFinal = isFinal;
+    public void setIfFinal(boolean isFinal) {
+        this.ifFinal = isFinal;
     }
 
-    public boolean isStatic() {
-        return isStatic;
+    public boolean isIfStatic() {
+        return ifStatic;
     }
 
-    public void setStatic(boolean isStatic) {
-        this.isStatic = isStatic;
+    public void setIfStatic(boolean isStatic) {
+        this.ifStatic = isStatic;
     }
 
     protected void addCommonFormatted(StringBuilder sb, int indentLevel) {
