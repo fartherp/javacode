@@ -26,10 +26,10 @@ import java.util.Set;
 
 /**
  * 枚举
- * Author: CK
- * Date: 2015/6/7
+ * @author CK
+ * @date 2015/6/7
  */
-public class InnerEnum extends JavaElement {
+public class InnerEnum extends BaseJavaElement {
 
     /** 字段 */
     private List<Field> fields;

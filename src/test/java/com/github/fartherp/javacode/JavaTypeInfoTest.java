@@ -25,8 +25,8 @@ import static org.testng.Assert.*;
 /**
  * Created by IntelliJ IDEA.
  *
- * @author: CK
- * @date: 2018/1/2
+ * @author CK
+ * @date 2018/1/2
  */
 public class JavaTypeInfoTest {
     @Test

@@ -25,10 +25,10 @@ import java.util.Set;
 
 /**
  * 类/内部类
- * Author: CK
- * Date: 2015/6/7
+ * @author CK
+ * @date: 2015/6/7
  */
-public class InnerClass extends JavaElement {
+public class InnerClass extends BaseJavaElement {
 
     /** 字段 */
     private List<Field> fields;
@@ -164,21 +164,19 @@ public class InnerClass extends JavaElement {
         }
 
         // 类实现的接口
-        if (!isIfInterface()) {
-            if (getSuperInterfaceTypes().size() > 0) {
-                sb.append(JavaKeywords.IMPLEMENTS);
+        if (!isIfInterface() && getSuperInterfaceTypes().size() > 0) {
+			sb.append(JavaKeywords.IMPLEMENTS);
 
-                boolean comma = false;
-                for (JavaTypeInfo fqjt : getSuperInterfaceTypes()) {
-                    if (comma) {
-                        sb.append(", ");
-                    } else {
-                        comma = true;
-                    }
+			boolean comma = false;
+			for (JavaTypeInfo fqjt : getSuperInterfaceTypes()) {
+				if (comma) {
+					sb.append(", ");
+				} else {
+					comma = true;
+				}
 
-                    sb.append(fqjt.getShortName());
-                }
-            }
+				sb.append(fqjt.getShortName());
+			}
         }
 
         sb.append(" {"); 

@@ -25,12 +25,10 @@ import java.util.TreeSet;
 import static org.testng.Assert.*;
 
 /**
- * <pre>
- *  @author: cuiyuqiang
- *  @email: cuiyuqiang@ddjf.com.cn
- *  @date: 2019/6/21 11:42
- *  @project: risk-control-parent
- * </pre>
+ * Created by IntelliJ IDEA.
+ *
+ * @author CK
+ * @date 2019/6/21
  */
 public class TopLevelClassTest {
 

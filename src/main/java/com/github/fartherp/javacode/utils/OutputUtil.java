@@ -17,20 +17,21 @@ package com.github.fartherp.javacode.utils;
 
 /**
  * Created by IntelliJ IDEA.
- * Author: CK
- * Date: 2015/8/15
+ *
+ * @author CK
+ * @date 2015/8/15
  */
 public class OutputUtil {
 
     /** 行分割符 */
-    private static final String lineSeparator;
+    private static final String LINE_SEPARATOR;
 
     static {
         String ls = System.getProperty("line.separator");
         if (ls == null) {
             ls = "\n";
         }
-        lineSeparator = ls;
+        LINE_SEPARATOR = ls;
     }
 
     /**
@@ -51,6 +52,6 @@ public class OutputUtil {
      * @param sb a StringBuilder to append to
      */
     public static void newLine(StringBuilder sb) {
-        sb.append(lineSeparator);
+        sb.append(LINE_SEPARATOR);
     }
 }

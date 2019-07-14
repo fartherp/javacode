@@ -17,8 +17,8 @@ package com.github.fartherp.javacode;
 
 /**
  * java关键词
- * Auth: CK
- * Date: 2016/6/22
+ * @author CK
+ * @date 2016/6/22
  */
 public class JavaKeywords {
     public static final String PUBLIC = "public ";

@@ -20,8 +20,8 @@ import java.util.Set;
 
 /**
  * JAVA类接口
- * Author: CK
- * Date: 2015/6/7
+ * @author CK
+ * @date 2015/6/7
  */
 public interface CompilationUnit {
 

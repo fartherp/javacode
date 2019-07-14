@@ -23,8 +23,8 @@ import java.util.StringTokenizer;
 
 /**
  * JAVA类型信息
- * Author: CK.
- * Date: 2015/6/6.
+ * @author CK.
+ * @date 2015/6/6.
  */
 public class JavaTypeInfo implements Comparable<JavaTypeInfo> {
 

@@ -21,8 +21,8 @@ import java.util.List;
 
 /**
  * 参数
- * Author: CK.
- * Date: 2015/6/6.
+ * @author CK.
+ * @date 2015/6/6.
  */
 public class Parameter {
     /** 参数名 */

@@ -24,10 +24,10 @@ import java.util.List;
 /**
  * JAVA元素(类/字段)公共信息
  * 1: 注释, 2: 注解, 3: 作用域, 4: final, 5: static
- * Author: CK.
- * Date: 2015/6/6.
+ * @author CK.
+ * @date 2015/6/6.
  */
-public abstract class JavaElement {
+public abstract class BaseJavaElement {
 
     /** JAVA注释 */
     private List<String> javaDocLines;
@@ -44,13 +44,13 @@ public abstract class JavaElement {
     /** JAVA注解 */
     private List<String> annotations;
 
-    public JavaElement() {
+    public BaseJavaElement() {
         super();
         this.javaDocLines = new ArrayList<>();
 		this.annotations = new ArrayList<>();
     }
 
-    public JavaElement(JavaElement original) {
+    public BaseJavaElement(BaseJavaElement original) {
         this();
         this.addAnnotations(original.getAnnotations());
         this.setIfFinal(original.isIfFinal());

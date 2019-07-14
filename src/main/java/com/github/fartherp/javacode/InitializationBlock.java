@@ -29,8 +29,8 @@ import java.util.ListIterator;
  *
  * }
  * </pre>
- * Author: CK
- * Date: 2015/7/8.
+ * @author CK
+ * @date 2015/7/8.
  */
 public class InitializationBlock {
     /** 是否静态 */
@@ -112,7 +112,7 @@ public class InitializationBlock {
             OutputUtil.javaIndent(sb, indentLevel);
             sb.append(line);
 
-            if ((line.endsWith("{") && !line.startsWith(JavaKeywords.SWITCH)) || line.endsWith(":")) {
+            if (line.endsWith("{") && !line.startsWith(JavaKeywords.SWITCH) || line.endsWith(":")) {
                 indentLevel++;
             }
 

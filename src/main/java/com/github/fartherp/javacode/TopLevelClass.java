@@ -27,8 +27,8 @@ import java.util.TreeSet;
 /**
  * 类包括的基本信息
  * 1: 包名注释, 2: 包名, 3: 导入的静态包, 4:导入的包, 5: 具体代码
- * Author: CK
- * Date: 2015/6/13
+ * @author CK
+ * @date 2015/6/13
  */
 public class TopLevelClass extends InnerClass implements CompilationUnit {
 

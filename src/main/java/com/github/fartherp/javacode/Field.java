@@ -20,10 +20,10 @@ package com.github.fartherp.javacode;
  * <pre>
  * 1: 注释 2: 注解 3: 作用域 4: final 5: static 6: transient 7: volatile 8: 初始值
  * </pre>
- * Author: CK.
- * Date: 2015/6/6.
+ * @author CK.
+ * @date: 2015/6/6.
  */
-public class Field extends JavaElement {
+public class Field extends BaseJavaElement {
     /** JAVA类型信息 */
     private JavaTypeInfo type;
     /** 字段名 */

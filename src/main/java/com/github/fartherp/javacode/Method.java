@@ -25,10 +25,10 @@ import java.util.ListIterator;
 /**
  * JAVA方法
  * 1: 注释, 2: 注解, 3: 作用域, 4: final, 5: static, 6: transient, 7: volatile, 8: 初始值
- * Author: CK.
- * Date: 2015/6/6.
+ * @author CK.
+ * @date 2015/6/6.
  */
-public class Method extends JavaElement {
+public class Method extends BaseJavaElement {
 
     /** 包体行 */
     private List<String> bodyLines;
@@ -163,7 +163,7 @@ public class Method extends JavaElement {
                 OutputUtil.javaIndent(sb, indentLevel);
                 sb.append(line);
 
-                if ((line.endsWith("{") && !line.startsWith(JavaKeywords.SWITCH)) || line.endsWith(":")) {
+                if (line.endsWith("{") && !line.startsWith(JavaKeywords.SWITCH) || line.endsWith(":")) {
                     indentLevel++;
                 }
 

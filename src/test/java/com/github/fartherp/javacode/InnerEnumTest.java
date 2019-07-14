@@ -26,8 +26,8 @@ import static org.testng.Assert.*;
 
 /**
  * 内部类单侧
- * Author: CK
- * Date: 2015/6/7
+ * @author CK
+ * @date 2015/6/7
  */
 public class InnerEnumTest {
 

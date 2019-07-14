@@ -20,26 +20,28 @@ import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA .
- * Auth: CK
- * Date: 2016/5/31
+ * @author CK
+ * @date 2016/5/31
  */
 public enum PrimitiveJavaType {
+	/**
+	 * 基础类型枚举
+	 */
     BYTE(Byte.class, "byte", "parseByte"),
     SHORT(Short.class, "short", "parseShort"),
     INTEGER(Integer.class, "int", "parseInt"),
     LONG(Long.class, "long", "parseLong"),
     BOOLEAN(Boolean.class, "boolean", "parseBoolean"),
     FLOAT(Float.class, "float", "parseFloat"),
-    DOUBLE(Double.class, "double", "parseDouble"),
-    ;
+    DOUBLE(Double.class, "double", "parseDouble");
 
-    public final Class clazz;
+    private final Class clazz;
 
-    public final String lower;
+	private final String lower;
 
-    public final String method;
+	private final String method;
 
-    public final static Map<String, PrimitiveJavaType> map = new HashMap<>();
+	public static final Map<String, PrimitiveJavaType> PRIMITIVE_JAVA_TYPE_HASH_MAP = new HashMap<>();
 
     PrimitiveJavaType(Class clazz, String lower, String method) {
         this.clazz = clazz;
@@ -49,17 +51,17 @@ public enum PrimitiveJavaType {
 
     static {
         for (PrimitiveJavaType javaType : PrimitiveJavaType.values()) {
-            map.put(javaType.clazz.getSimpleName(), javaType);
-            map.put(javaType.lower, javaType);
-            map.put(javaType.clazz.getName(), javaType);
+            PRIMITIVE_JAVA_TYPE_HASH_MAP.put(javaType.clazz.getSimpleName(), javaType);
+            PRIMITIVE_JAVA_TYPE_HASH_MAP.put(javaType.lower, javaType);
+            PRIMITIVE_JAVA_TYPE_HASH_MAP.put(javaType.clazz.getName(), javaType);
         }
     }
 
     public static PrimitiveJavaType getByFullyQualifiedName(String fullyQualifiedName) {
-        return map.get(fullyQualifiedName);
+        return PRIMITIVE_JAVA_TYPE_HASH_MAP.get(fullyQualifiedName);
     }
 
     public static PrimitiveJavaType getByShortName(String shortName) {
-        return map.get(shortName);
+        return PRIMITIVE_JAVA_TYPE_HASH_MAP.get(shortName);
     }
 }
