@@ -31,7 +31,7 @@ echo "Current commit detected: ${commit_message}"
 # 4. Notify Coveralls.
 # 5. Deploy site
 
-if [ $TRAVIS_REPO_SLUG == "fartherp/shiro-redisson" ] && [ "$TRAVIS_BRANCH" == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]]; then
+if [ $TRAVIS_REPO_SLUG == "fartherp/javacode" ] && [ "$TRAVIS_BRANCH" == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]]; then
 
   if [ $TRAVIS_JDK_VERSION == "openjdk8" ]; then
 
@@ -42,7 +42,7 @@ if [ $TRAVIS_REPO_SLUG == "fartherp/shiro-redisson" ] && [ "$TRAVIS_BRANCH" == "
     ./mvnw clean test jacoco:report coveralls:report -q --settings ./travis/settings.xml
     echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
 
-    ./mvnw sonar:sonar -Dsonar.projectKey=fartherp_shiro-redisson
+    ./mvnw sonar:sonar -Dsonar.projectKey=fartherp_javacode
 
     # Deploy to site
     # Cannot currently run site this way
@@ -50,8 +50,8 @@ if [ $TRAVIS_REPO_SLUG == "fartherp/shiro-redisson" ] && [ "$TRAVIS_BRANCH" == "
     # echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
 
     # Deploy to sonar
-    ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a4db6769319225f45af10dfd67e8d982d3f8fe0a -q --settings ./travis/settings.xml
-    echo -e "Successfully ran Sonar integration under Travis job ${TRAVIS_JOB_NUMBER}"
+    # ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a4db6769319225f45af10dfd67e8d982d3f8fe0a -q --settings ./travis/settings.xml
+    # echo -e "Successfully ran Sonar integration under Travis job ${TRAVIS_JOB_NUMBER}"
   else
     echo "Java Version does not support additonal activity for travis CI"
   fi
