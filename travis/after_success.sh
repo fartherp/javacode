@@ -42,15 +42,13 @@ if [ $TRAVIS_REPO_SLUG == "fartherp/javacode" ] && [ "$TRAVIS_BRANCH" == "master
     ./mvnw clean test jacoco:report coveralls:report -q --settings ./travis/settings.xml
     echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
 
-    ./mvnw sonar:sonar -Dsonar.projectKey=fartherp_javacode
-
     # Deploy to site
     # Cannot currently run site this way
     # ./mvnw site site:deploy -q --settings ./travis/settings.xml
     # echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
 
     # Deploy to sonar
-    ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=02a1a19623eeb31925a3475d7f5133451cbaca9c
+    ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.projectKey=fartherp_javacode -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=02a1a19623eeb31925a3475d7f5133451cbaca9c
     echo -e "Successfully ran Sonar integration under Travis job ${TRAVIS_JOB_NUMBER}"
   else
     echo "Java Version does not support additonal activity for travis CI"
